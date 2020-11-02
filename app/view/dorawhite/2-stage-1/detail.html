@@ -1,0 +1,94 @@
+{% extends "../default.html" %} {% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 main-container" ms-controller="documentInfo">
+            <input type="hidden" value="{{post._id}}" id="contentId">
+            <div class="row articel-details">
+                {% if (post.categories[0]).enable %}
+                <div class="col-md-8 left-frame">
+                    <div class="articel-main ">
+                        <article class="">fsdfsdf
+                            <h2 alt="{{site.altkey}}{{post.title}}" class="post-title">
+                                {{post.title}} {% if post.from == '2' %} &nbsp;
+                                <span class="badge">{{__('lc_document_share')}}</span>
+                                {% endif %}
+                            </h2>
+                            <ul class="post-meta content-author">
+                                <li class="author-name">
+                                    {% if post.author %} {{post.author.userName}} {% else %}
+                                    {{post.uAuthor.userName}} {% endif %}
+                                </li>
+                                <li>
+                                    {% set cateInfo = (post.categories[0]) %}
+                                    <span class="dot">&nbsp;•&nbsp;</span>
+                                    <a href="{{cateInfo.url}}"
+                                        target="_blank">{{(post.categories[post.categories.length-1]).name}}</a>
+                                </li>
+                                <li>
+                                    <span class="dot">&nbsp;•&nbsp;</span> {{post.date}}
+                                </li>
+                                <li>
+                                    <span
+                                        class="dot">&nbsp;•&nbsp;</span>{{__('lc_document_readNum}}&nbsp;&nbsp;{{post.clickNum')}}
+                                </li>
+                            </ul>
+                            <div class="post-content">
+                                {{post.comments | safe}}
+                            </div>
+                        </article>
+                        {% if post.tags.length>0%}
+                        <div class="tag-list">
+                            <ul>
+                                {% for tag in post.tags %}
+                                <li>
+                                    <span class="label label-info">
+                                        <a href="{{tag.url}}">{{tag.name}}</a>
+                                    </span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% include "../public/randomList.html" %} {% include "../public/msgBoard.html" %} {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-4 right-frame">
+                    {% include "../public/cateList.html" %} {% include "../public/newItemList.html" %}
+                </div>
+                {% else %}
+                <div class="col-md-12 left-frame">
+                    <div class="articel-main">
+                        <article class="post">
+                            <h2 alt="{{site.altkey}}{{post.title}}" class="post-title">
+                                {{post.discription}} {% if post.from == '2' %} &nbsp;
+                                <span class="badge">{{__('lc_document_share')}}</span>
+                                {% endif %}
+                            </h2>
+                            <ul class="post-meta content-author">
+                                <li class="author-name">
+                                    {% if post.author %} {{post.author.userName}} {% else %}
+                                    {{post.uAuthor.userName}} {% endif %}
+                                </li>
+                                <li>
+                                    <span class="dot">&nbsp;•&nbsp;</span>
+                                    {{(post.categories[post.categories.length-1]).name}}
+                                </li>
+                                <li>
+                                    <span class="dot">&nbsp;•&nbsp;</span> {{post.date}}
+                                </li>
+                                <li>
+                                    <span
+                                        class="dot">&nbsp;•&nbsp;</span>{{__('lc_document_readNum}}&nbsp;&nbsp;{{post.clickNum')}}
+                                </li>
+                            </ul>
+                            <div class="post-content">
+                                {{post.comments | safe}}
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

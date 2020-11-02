@@ -1,0 +1,109 @@
+{% extends "./default.html" %}
+{% block content %} {% import "./public/adsPannel.html" as adsPannel %}
+{% import "./public/swiper.html" as swiper %}
+
+<div class="home">
+
+    <!-- banner轮播 -->
+
+
+    <div class="banner slider-box">
+        {% ads name="topbanner" %}
+        {{swiper.init(topbanner)}}
+    </div>
+
+    <div class="title-container">
+        <h2 class="">新闻动态</h2>
+    </div>
+
+
+
+    <!-- 新闻轮播 -->
+
+    <div class="news">
+        {% hot key="recommend","pageSize"=5,"typeId"="HxKtx9dEA" %}
+
+        {% if recommend.length > 0 %}
+
+        <div class="swiper-container" style="overflow: visible;">
+            <div class="swiper-wrapper">
+                {% for item in recommend %}
+                <div class="swiper-slide">
+                    <a href="{{item.url}}" title="{{item.title}}" target="_blank">
+                        <div class="pic">
+                            <img src="{{item.sImg}}" title="{{item.title}}" style="width: 100%; height: 432px;">
+                        </div>
+                    </a>
+                    <div class="text1 swiper-no-swiping">
+                        <h3>{{item.stitle }}</h3>
+                    </div>
+                    <div class="text2 swiper-no-swiping">
+                        <h3>{{item.stitle }}</h3>
+                        <p>{{item.discription| cutwords(200)}}</p>
+                        <a href="{{item.url}}" title="{{item.title}}" target="_blank">查看更多</a>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+
+            <!-- 如果需要导航按钮 -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+        {% endif%}
+    </div>
+
+    <script>
+        // init 
+        //swiper横向新闻滚动
+        var swiper = new Swiper('.news .swiper-container', {
+            noSwiping: true,
+            speed: 800,
+            slidesPerView: 1.8361,
+            loop: true,
+            loopAdditionalSlides: 1, //前后复制一个
+            centeredSlides: true,
+            spaceBetween: "4.205%",
+            pagination: {
+                el: '.swiper-pagination',
+                paginationClickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                1440: {
+                    slidesPerView: 1.5,
+                },
+                1024: {
+                    slidesPerView: 1.2,
+                },
+                768: {
+                    slidesPerView: 1,
+                }
+            }
+        });
+    </script>
+
+    <div class="mainbody">
+        <div class="main-container ">
+            <div class="row home">
+                <div class="left-frame col-md-8">
+                    {% include "./public/itemListTemp.html" %}
+                </div>
+                <div class="right-frame col-md-4">
+                    {% include "./public/hotNewsList.html" %}
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

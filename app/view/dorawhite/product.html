@@ -1,0 +1,48 @@
+{% extends "./default.html" %}
+{% block content %}
+<div class="mainbody">
+    <div class="product">
+        <p class="title1">产品中心</p>
+        {% childnav key="products","pageSize"=10,"typeId"="8rD7hoRoN" %}
+
+        {% for cateItem in products.cates %}
+        {% if cateItem.parentId == '8rD7hoRoN' %}
+
+        <div class="card">
+            <div class="row">
+
+                <div class="col-md-2 col-sm-12">
+                    <div>
+                        <span class="card-title">{{cateItem.name}}</span>
+                    </div>
+                </div>
+                <div class="col-md-10 col-sm-12 ">
+                    <div class="card-content">
+                        {% set itemid = cateItem.id %}
+                        {% news key="theposts","pageSize"=10,"typeId"=itemid %}
+                        {% for item in theposts %}
+                        <a href="{{item.url}}" target="_blank">
+                            <div class="card-content-item">
+                                <div class="img">
+                                    <img src="{{item.sImg}}" alt="{{item.keywords}}">
+                                </div>
+
+                                <div style="position: relative;">
+                                    <div>
+                                        <span class="info">{{item.stitle}}</span>
+                                        <div class="elastic-item"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

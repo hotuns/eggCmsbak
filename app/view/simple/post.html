@@ -1,0 +1,72 @@
+{% extends "./default.html" %}
+{% block content %}
+{% import "./public/adsPannel.html" as adsPannel %}
+{% assets 'info.css' %}
+{% endassets %}
+
+<article>
+    <aside>
+        <div class="l_box" id="stickMe">
+
+            {% include './public/sidebar.html' %}
+
+        </div>
+    </aside>
+    <div class="infosbox">
+        <div class="newsview">
+            <h3 class="news_title">{{post.title}}</h3>
+            <div class="bloginfo">
+                <ul>
+                    <li class="author">作者：<a href="/">{{post.uAuthor.userName}}</a></li>
+                    <li class="lmname"><a
+                            href="{{cateInfo.url}}">{{(post.categories[post.categories.length-1]).name}}</a></li>
+                    <li class="timer">时间：{{post.date}}</li>
+                    <li class="view">{{post.clickNum}} 人已阅读</li>
+                </ul>
+            </div>
+            <div class="tags">
+                {% for tag in post.tags %}
+                <a href="/" target="_blank">{{tag.name}}</a>&nbsp;
+                {% endfor %}
+            </div>
+            <div class="news_about">
+                <strong>简介</strong>{{post.discription}}
+            </div>
+            <div class="news_con"> {{post.comments | safe}} </div>
+        </div>
+        <div class="share">
+            <p class="diggit"><a href="JavaScript:devIng('{{post._id}}');">
+                    很赞哦！ </a>(<b id="diggnum"> {{post.likeNum}}
+                </b>)</p>
+        </div>
+
+        <div class="nextinfo">
+            {% near_post "id"=post._id %}
+            {% if near_post %}
+            {% if near_post.preContent.title %}
+            <p>上一篇：<a href="{{near_post.preContent.url}}">{{near_post.preContent.title}}</a></p>
+            {% endif %}
+            {% if near_post.nextContent.title %}
+            <p>下一篇：<a href="{{near_post.nextContent.url}}">{{near_post.nextContent.title}}</a></p>
+            {% endif %}
+            {% endif %}
+        </div>
+
+    </div>
+</article>
+<div class="clear blank"></div>
+<script>
+    function devIng(id) {
+        getAjaxData('/api/user/askContentThumbsUp?contentId=' + id, (data) => {
+            if (data.status == 200) {
+                var newNum = Number($('#diggnum').text()) + 1;
+                $('#diggnum').text(newNum);
+                layer.msg(data.message, {
+                    icon: 1,
+                    time: 800
+                });
+            }
+        })
+    }
+</script>
+{% endblock %}

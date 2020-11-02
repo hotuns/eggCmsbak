@@ -1,0 +1,14 @@
+{% extends "./default.html" %}
+{% import "./public/adsPannel.html" as adsPannel %}
+{% block content %}
+<article>
+  <aside>
+    <div class="l_box" id="stickMe">
+      {% include './public/sidebar.html' %}
+    </div>
+  </aside>
+  <div class="r_box">
+    {% include './public/itemListTemp.html' %}
+  </div>
+</article>
+{% endblock %}

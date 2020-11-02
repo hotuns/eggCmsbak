@@ -1,0 +1,23 @@
+{% extends "../default.html" %} {% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 main-container">
+            <div class="row">
+                <div class="col-md-8 left-frame">
+                    <div class="column-wrap">
+                        <h2 alt="{{site.altkey}}{{targetSearchKey}}">{{list_title}}</h2>
+                    </div>
+                    {% include "../public/itemListTemp.html" %}
+                </div>
+                <div class="col-md-4 right-frame">
+                    <div class="column-wrap">
+                        <h2 alt="{{site.altkey}}{{targetSearchKey}}">新闻动态</h2>
+                    </div>
+                    {% include "../public/cateList.html" %}
+                    {% include "../public/hotNewsList.html" %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

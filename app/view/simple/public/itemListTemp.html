@@ -1,0 +1,9 @@
+
+	{% for item in posts %}
+	<li><i><a href="{{item.url}}"><img src="{{item.sImg}}"></a></i>
+		<h3><a href="{{item.url}}">{{item.title}}</a></h3>
+		<p>{{item.discription}}</p>
+	</li>
+
+	{% endfor %}
+	{% include "./pagination.html" %}

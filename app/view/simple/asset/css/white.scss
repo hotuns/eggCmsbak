@@ -1,0 +1,22 @@
+.main-detailbox,
+.cmscase-pannel,
+.about-us {
+    padding: 1rem 1.75rem;
+    max-width: 72rem;
+    margin: 0 auto;
+    background: #fff;
+}
+
+.gap-img-ads {
+    ul {
+        li {
+            list-style-type: none;
+            width: 20%;
+            display: inline-block;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+}

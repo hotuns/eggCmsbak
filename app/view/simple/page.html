@@ -1,0 +1,31 @@
+{% extends "./default.html" %}
+{% block content %}
+{% import "./public/adsPannel.html" as adsPannel %}
+
+
+<article>
+    <aside>
+        <div class="l_box" id="stickMe">
+
+            {% include './public/sidebar.html' %}
+
+        </div>
+    </aside>
+    <div class="r_box">
+        <div class="news-title" style="height: 30px;
+        line-height: 30px;
+        margin-bottom: 15px;
+        font-weight: 600;">
+            {% if pageType == 'search' %}
+            搜索：{{targetSearchKey}}
+            {% elif pageType == 'tag' %}
+            标签：{{targetTagName}}
+            {% else %}
+            {{cateInfo.name}}
+            {% endif %}
+        </div>
+        {% include './public/itemListTemp.html' %}
+    </div>
+</article>
+<div class="clear blank"></div>
+{% endblock %}

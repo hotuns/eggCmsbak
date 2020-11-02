@@ -1,0 +1,23 @@
+<!--文章推荐模块-->
+{% recommend pageSize=10 %}
+{% if recommend.length > 0 %}
+<div class="pannel-box rec-content-list">
+    <h2 class="pannel-title">{{__('lc_rec_document')}}</h2>
+    <div class="content-list">
+        <div class="row">
+            {% for item in recommend %}
+
+            <div class="col-md-6 list-img">
+                <a href="{{item.url}}" class="continue-reading">
+                    <img src="{{item.sImg}}" alt="{{item.title}}">
+                </a>
+                <a href="{{item.url}}" target="_blank" class="title">
+                    {{item.stitle | cutwords(40)}}
+                </a>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endif%}

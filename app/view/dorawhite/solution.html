@@ -1,0 +1,59 @@
+{% extends "./default.html" %}
+{% block content %} {% import "./public/adsPannel.html" as adsPannel %}
+<div>
+    <div class="solution">
+
+        {% ads name="解决方案banner" %}
+        {% for item in 解决方案banner.items %}
+        {% set imgItemStyle = 'background-image:url('+item.sImg + ')'%}
+        <div class="banner" style='{{imgItemStyle}}'>
+            <div>
+                <span>{{item.title | dump}}</span>
+            </div>
+        </div>
+        {% endfor %}
+
+
+
+        {% childnav key="solutions","pageSize"=10,"typeId"="tWf0Xsvjg" %}
+        <div class="main-container">
+            <div class="nav">
+                {% for cateItem in solutions.cates %}
+                {% if cateItem.parentId == 'tWf0Xsvjg' %}
+                <div class="nav-item">
+                    <span :data-key='key' class="selected">
+                        {{cateItem.name}}
+                    </span>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="content">
+                {% set itemid = "p-nXoG2ob" %}
+                {% news key="theposts","pageSize"=10,"typeId"=itemid %}
+                {% for item in theposts %}
+                <div class="content-item">
+                    <div class="img">
+                        <img src="{{item.sImg}}" alt="{{item.keywords}}">
+                    </div>
+                    <div class="text">
+                        <h3>{{item.stitle}}</h3>
+                        <p>{{item.discription | dump}}</p>
+                        <a class="more" href="">MORE+</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+
+<script>
+    console.log(this)
+    console.log(itemid)
+    // let type = { "type": "1", "categories": [{ "enable": true, "defaultUrl": "solution", "_id": "tWf0Xsvjg", "name": "解决方案", "contentTemp": { "forder": "2-stage-default", "cateName": "contentList", "detailName": "detail", "isDefault": true, "_id": "N1JIyGBne", "name": "默认模板", "date": "2016-03-06T12:18:54.563Z", "__v": 0 }, "url": "/solution___tWf0Xsvjg", "id": "tWf0Xsvjg" }, { "enable": false, "defaultUrl": "solution/agricultural", "_id": "p-nXoG2ob", "name": "农业互联网", "contentTemp": { "forder": "2-stage-default", "cateName": "contentList", "detailName": "detail", "isDefault": true, "_id": "N1JIyGBne", "name": "默认模板", "date": "2016-03-06T12:18:54.563Z", "__v": 0 }, "url": "/solution/agricultural___p-nXoG2ob", "id": "p-nXoG2ob" }], "tags": [{ "_id": "HwxoHNsPO", "name": "云平台", "url": "/tag/云平台", "id": "HwxoHNsPO" }], "sImg": "https://thzy-website.oss-cn-hangzhou.aliyuncs.com/cms/upload/images/20201101/1604199715586976750.png", "videoImg": "", "state": "2", "isTop": 0, "roofPlacement": "0", "clickNum": 1, "_id": "On-4pYpUs", "title": "温室苗圃物联网", "stitle": "温室苗圃物联网", "author": { "logo": "https://cdn.html-js.cn/cms/upload/smallimgs/img1448202744000.jpg", "_id": "4JiWCMhzg", "userName": "admin" }, "discription": "测量温室及高棚结构中的DLI(光照时间及强渡），不断改善植物品质。对于室外种植的植物。", "uAuthor": { "logo": "/static/upload/images/defaultlogo.png", "group": "0", "_id": "rwgNKRHEp", "userName": "天航华创", "id": "rwgNKRHEp" }, "date": "2020-11-01 11:02:45", "updateDate": "2020-11-01 11:02:45", "url": "/details/On-4pYpUs.html", "id": "On-4pYpUs" }
+</script>

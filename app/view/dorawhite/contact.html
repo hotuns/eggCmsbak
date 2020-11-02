@@ -1,0 +1,70 @@
+{% extends "./default.html" %}
+{% block content %}
+<div class="contact">
+    <script type="text/javascript">
+        function initialize() {
+            var map = new BMap.Map('map');
+
+            var point = new BMap.Point(116.357691, 40.025316);
+            map.centerAndZoom(point, 15);
+            var marker = new BMap.Marker(point);        // 创建标注    
+            map.addOverlay(marker);                     // 将标注添加到地图中 
+
+            var opts = {
+                width: 200,     // 信息窗口宽度
+                height: 100,     // 信息窗口高度
+                title: "北京天航华创科技股份有限公司", // 信息窗口标题
+                message: "北京天航华创科技股份有限公司"
+            }
+            var infoWindow = new BMap.InfoWindow("地址: 学清路9号汇智大厦a309", opts);  // 创建信息窗口对象 
+            map.openInfoWindow(infoWindow, point);
+            marker.addEventListener("click", function () {
+                map.openInfoWindow(infoWindow, point); //开启信息窗口
+            });
+
+        }
+
+        function loadScript() {
+            var script = document.createElement("script");
+            script.src = "http://api.map.baidu.com/api?v=2.0&ak=tfk4tme5NoIWhAgmRmGdX7fRHpAca7FQ&callback=initialize";
+            document.body.appendChild(script);
+        }
+
+        window.onload = loadScript;  
+    </script>
+
+    <div>
+
+    </div>
+    <div id="map" style="width:100%; height: 68vh; margin-top: 59px;">
+    </div>
+
+    <div class="content" :class="{mobile: _isMobile != null}">
+        <div class="item">
+            <p class="icon">
+                地址/Adree
+            </p>
+            <p class="info">北京市海淀区学清路9号A座309</p>
+        </div>
+        <div class="item">
+            <p class="icon">
+                电话/Tel
+            </p>
+            <p class="info"> 010-82734680</p>
+        </div>
+        <div class="item">
+            <p class="icon">
+                邮箱/Email:
+            </p>
+            <p class="info"> dongfang.liu@thcreate.com.cn</p>
+        </div>
+    </div>
+
+    <style type="text/css">
+        #id {
+            height: 300px;
+        }
+    </style>
+
+</div>
+{% endblock %}

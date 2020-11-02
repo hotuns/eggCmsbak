@@ -1,0 +1,19 @@
+<header class="header-navigation" id="header">
+  <nav>
+    <div class="logo"><a href="/">{{site.configs.siteName}}</a></div>
+    <h2 id="mnavh"><span class="navicon"></span></h2>
+    <ul id="starlist">
+      <li><a href="/">网站首页</a></li>
+      {% for cate in navigation %}
+      {% if cate.parentId == '0' %}
+      {% if cateInfo._id == cate._id %}
+      {% set navClass = 'active'%}
+      {% else %}
+      {% set navClass = ''%}
+      {% endif %}
+      <li class="{{navClass}}"><a href="{{cate.url}}">{{cate.name}}</a></li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+  </nav>
+</header>
